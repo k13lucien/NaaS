@@ -1,0 +1,37 @@
+name: Deploy NaaS Backend (Local Runner)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    # On exécute le job directement sur la VM Debian
+    runs-on: self-hosted
+
+    steps:
+      # Étape 1 — Récupération du code depuis GitHub
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Étape 2 — Build du projet Maven
+      - name: Build JAR with Maven
+        run: |
+          cd ~/NaaS    # chemin vers ton projet local si nécessaire
+          ./mvnw clean package -DskipTests
+
+      # Étape 3 — Déploiement local du JAR et redémarrage du service
+      - name: Deploy and restart service
+        run: |
+          JAR_NAME="NaaS-0.0.1-SNAPSHOT.jar"
+          JAR_SOURCE="target/$JAR_NAME"
+          JAR_DEST="/opt/naas/naas.jar"
+
+          echo "Déploiement du JAR..."
+          sudo cp "$JAR_SOURCE" "$JAR_DEST"
+
+          echo "Redémarrage du service systemd..."
+          sudo systemctl restart naas.service
+
+          echo "Déploiement terminé ✅"
