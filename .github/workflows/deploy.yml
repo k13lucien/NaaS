@@ -18,7 +18,6 @@ jobs:
       # Étape 2 — Build du projet Maven
       - name: Build JAR with Maven
         run: |
-          cd ~/NaaS    # chemin vers ton projet local si nécessaire
           ./mvnw clean package -DskipTests
 
       # Étape 3 — Déploiement local du JAR et redémarrage du service
