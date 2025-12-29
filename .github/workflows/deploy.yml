@@ -28,7 +28,7 @@ jobs:
           JAR_DEST="/opt/naas/naas.jar"
 
           echo "Déploiement du JAR..."
-          sudo cp "$JAR_SOURCE" "$JAR_DEST"
+          cp "$JAR_SOURCE" "$JAR_DEST"
 
           echo "Redémarrage du service systemd..."
           sudo systemctl restart naas.service

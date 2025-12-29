@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -16,6 +15,11 @@ public class DeclineController {
 
     public DeclineController(DeclineService service) {
         this.service = service;
+    }
+
+    @GetMapping("/health")
+    public String checkHealth() {
+        return "I'm fine";
     }
 
     @GetMapping("api/v1/no")
