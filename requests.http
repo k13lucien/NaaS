@@ -1,0 +1,5 @@
+###
+GET http://localhost:8080/api/v1/no/all
+
+###
+GET http://192.168.56.101:8080/api/v1/no
