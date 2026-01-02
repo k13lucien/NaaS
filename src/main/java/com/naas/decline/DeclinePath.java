@@ -1,4 +1,4 @@
-package com.naas;
+package com.naas.decline;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
